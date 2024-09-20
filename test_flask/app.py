@@ -1,15 +1,12 @@
-# app.py
-
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-def calculate_sum(a, b):
-    return a + b
-
-@app.route('/')
-def index():
-    return "Hello, World!"
+@app.route('/sum')
+def sum_numbers():
+    num1 = int(request.args.get('num1', 0))
+    num2 = int(request.args.get('num2', 0))
+    return str(num1 + num2)
 
 if __name__ == '__main__':
     app.run(debug=True)
